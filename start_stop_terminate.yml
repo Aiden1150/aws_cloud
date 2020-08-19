@@ -1,0 +1,20 @@
+---
+- name: This playbook is used to create and launch ec2 instances using security groups and tags
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Creating ec2 instance
+    ec2:
+      instance_type: t2.micro
+      image: ami-02354e95b39ca8dec 
+      count: 1
+      key_name: ansible
+      region: us-east-1
+      wait: yes
+      group_id:
+        - sg-0a965cde53d11c5b4
+        - sg-066ed6da27fde2ac1
+      instance_tags:
+        Name: start_stop
+        Env: dev

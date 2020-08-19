@@ -1,0 +1,32 @@
+---
+- name: This playbook is used to create and launch ec2 instances using security groups and tags
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Starting ec2 instance
+    ec2:
+      instance_ids: i-0d51d646acfa14a7c
+      region: us-east-1
+      state: running
+      wait: yes
+    tags:
+      - start
+
+  - name: Stopping ec2 instance
+    ec2:
+      instance_ids: i-0d51d646acfa14a7c
+      region: us-east-1
+      state: stopped
+      wait: yes
+    tags:
+      - stop
+
+  - name: Terminating ec2 instance
+    ec2:
+      instance_ids: ['i-006aaf61c6def05eb','i-049f555f88febe4ac','i-0504d703a049ef296','i-071cc72135b6ffac5','i-0bd85298e3c5a28fd','i-0d51d646acfa14a7c']
+      region: us-east-1
+      state: absent
+      wait: yes
+    tags:
+      - terminate

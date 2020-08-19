@@ -1,0 +1,12 @@
+---
+- name: This playbook is for stopping the running instance
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: Stop EC2 instance
+    ec2:
+      instance_ids: ['i-006aaf61c6def05eb' ,'i-049f555f88febe4ac' ,'i-0504d703a049ef296' ,'i-071cc72135b6ffac5']
+      region: us-east-1
+      state: stopped
+      wait: yes
